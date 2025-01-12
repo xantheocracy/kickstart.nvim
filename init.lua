@@ -234,9 +234,9 @@ require('lazy').setup({
     lazy = false,
     event = { 'InsertEnter' },
     config = function()
-      vim.g.UltiSnipsExpandTrigger = '<c-j>'
-      vim.g.UltiSnipsJumpForwardTrigger = '<c-j>'
-      vim.g.UltiSnipsJumpBackwardTrigger = '<c-l>'
+      vim.g.UltiSnipsExpandTrigger = '<tab>'
+      vim.g.UltiSnipsJumpForwardTrigger = '<tab>'
+      vim.g.UltiSnipsJumpBackwardTrigger = '<s-tab>'
       --vim.g.python3_host_prog = '/opt/homebrew/bin/python3'
       vim.g.python3_host_prog = '~/.config/nvim/venv/bin/python3'
     end,
