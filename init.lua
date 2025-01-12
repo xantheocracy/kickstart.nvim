@@ -229,7 +229,27 @@ vim.opt.rtp:prepend(lazypath)
 require('lazy').setup({
   -- NOTE: Plugins can be added with a link (or for a github repo: 'owner/repo' link).
   'tpope/vim-sleuth', -- Detect tabstop and shiftwidth automatically
+  {
+    'sirver/ultisnips',
+    lazy = false,
+    event = { 'InsertEnter' },
+    config = function()
+      vim.g.UltiSnipsExpandTrigger = '<c-j>'
+      vim.g.UltiSnipsJumpForwardTrigger = '<c-j>'
+      vim.g.UltiSnipsJumpBackwardTrigger = '<c-l>'
+      --vim.g.python3_host_prog = '/opt/homebrew/bin/python3'
+      vim.g.python3_host_prog = '~/.config/nvim/venv/bin/python3'
+    end,
+  },
 
+  {
+    'lervag/vimtex',
+    lazy = false,
+    ft = { 'tex' },
+    init = function()
+      vim.g.vimtex_view_method = 'skim'
+    end,
+  },
   -- NOTE: Plugins can also be added by using a table,
   -- with the first argument being the link and the following
   -- keys can be used to configure plugin behavior/loading/etc.
@@ -974,3 +994,12 @@ require('lazy').setup({
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
+--
+-- UltiSnips
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = { 'tex', 'latex' },
+  callback = function()
+    vim.cmd 'runtime! ftplugin/tex.vim'
+    vim.cmd 'runtime! syntax/tex.vim'
+  end,
+})
